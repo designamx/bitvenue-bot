@@ -17,14 +17,27 @@ bot.get_updates(fail_silently: true) do |message|
     tips.push("El Bitcoin como reserva de valor")
     tips.push("Me gustan los tacos de pastor veganos")
     tips.push("BitVenue nunca te pedirá dinero")
+    tips.push("Bitcoin to the moon")
 
     message.reply do |reply|
-        if command.match(/^\/[a-z0-9]/i)
+        if command != nil && command.match(/^\/[a-z0-9]/i)
             case command
             when /ayuda/i
-                reply.text = "Escribe /tip para recibir uno de mis sabios consejos, o escribe /precio BTCUSDT para saber el precio del bitcoin (funciona con otras monedas)"
+                reply.text = "Escribe:\n" \
+                    "/tip       para recibir uno de mis sabios consejos.\n" \
+                    "/precio    BTCUSDT para saber el precio del bitcoin (funciona con otras monedas).\n" \
+                    "/canal     para obtener la liga a nuestro canal de Youtube.\n" \
+                    "/libros    para ver nuestra colección de audio libros.\n" \
+                    "/curso     para visitar nuestro curso online gratuito.\n" \
+                    "/version   para saber que versión soy"
             when /tip/i
                 reply.text = tips.sample.capitalize
+            when /canal/i
+                reply.text = "Visita nuestro canal de Youtube en https://www.youtube.com/channel/UC2bDe-M0oGqSd87RZiQCuoQ"
+            when /libros/i
+                reply.text = "Checa nuestra colección de audiolibros en https://cutt.ly/VfLRutg"
+            when /curso/i
+                reply.text = "Toma nuestro curso en linea GRATIS https://campus.elartedeinvertirenbolsa.com"
             when /precio/i
                 if command.inspect.split.length == 2
                     market = command.inspect.split.at(1).delete_suffix('"')
@@ -42,7 +55,7 @@ bot.get_updates(fail_silently: true) do |message|
                     reply.text = "Dame un mercado, intenta /precio BTCUSDT"
                 end
             when /version/i
-                reply.text = "Version 1.0.1"
+                reply.text = "Version 1.0.2"
             else
                 reply.text = "Aun no entiendo #{command.inspect}. Intenta /ayuda"
             end
