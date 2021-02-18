@@ -19,7 +19,7 @@ bot.get_updates(fail_silently: true) do |message|
     tips.push("BitVenue nunca te pedirá dinero")
 
     message.reply do |reply|
-        if command.inspect.index("/") != 0
+        if command.match(/^\/[a-z0-9]/i)
             case command
             when /ayuda/i
                 reply.text = "Escribe /tip para recibir uno de mis sabios consejos, o escribe /precio BTCUSDT para saber el precio del bitcoin (funciona con otras monedas)"
@@ -42,7 +42,7 @@ bot.get_updates(fail_silently: true) do |message|
                     reply.text = "Dame un mercado, intenta /precio BTCUSDT"
                 end
             when /version/i
-                reply.text = "Version 1.0.0"
+                reply.text = "Version 1.0.1"
             else
                 reply.text = "Aun no entiendo #{command.inspect}. Intenta /ayuda"
             end
