@@ -40,7 +40,7 @@ bot.get_updates(fail_silently: true) do |message|
             reply.text = "Dame un mercado, intenta /precio BTCUSDT"
         end
       else
-        reply.text = "Aun no entiendo #{command.inspect}."
+        reply.text = "Aun no entiendo #{command.inspect}. Intenta /ayuda"
       end
       puts "sending #{reply.text.inspect} to @#{message.from.username}"
       reply.send_with(bot)
