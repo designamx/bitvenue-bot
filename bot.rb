@@ -41,6 +41,8 @@ bot.get_updates(fail_silently: true) do |message|
                 else
                     reply.text = "Dame un mercado, intenta /precio BTCUSDT"
                 end
+            when /version/i
+                reply.text = "Version 1.0.0"
             else
                 reply.text = "Aun no entiendo #{command.inspect}. Intenta /ayuda"
             end
