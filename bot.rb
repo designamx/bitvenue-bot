@@ -19,7 +19,7 @@ bot.get_updates(fail_silently: true) do |message|
     tips.push("BitVenue nunca te pedirá dinero")
 
     message.reply do |reply|
-        if command.inspect.index("/") <> 0
+        if command.inspect.index("/") != 0
             case command
             when /ayuda/i
                 reply.text = "Escribe /tip para recibir uno de mis sabios consejos, o escribe /precio BTCUSDT para saber el precio del bitcoin (funciona con otras monedas)"
